@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
-      title: 'TextField示例',
+      title: 'Container容器布局示例',
       home: LayoutDemo(),
     ),
   );
@@ -15,40 +15,77 @@ class LayoutDemo extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
-    controller.addListener((){
-      print('你输入的内容为：${controller.text}');
-    });
+    Widget container = Container(
+      decoration: BoxDecoration(
+        color: Colors.grey,
+      ),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    border:  Border.all(width: 10, color: Colors.blueGrey),
+                    borderRadius: const BorderRadius.all(const Radius.circular(8.0)),
+                  ),
+                  margin: const EdgeInsets.all(4.0),
+                  child: Image.asset('images/1.jpg'),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    border:  Border.all(width: 10, color: Colors.blueGrey),
+                    borderRadius: const BorderRadius.all(const Radius.circular(8.0)),
+                  ),
+                  margin: const EdgeInsets.all(4.0),
+                  child: Image.asset('images/2.jpg'),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    border:  Border.all(width: 10, color: Colors.blueGrey),
+                    borderRadius: const BorderRadius.all(const Radius.circular(8.0)),
+                  ),
+                  margin: const EdgeInsets.all(4.0),
+                  child: Image.asset('images/3.jpg'),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    border:  Border.all(width: 10, color: Colors.blueGrey),
+                    borderRadius: const BorderRadius.all(const Radius.circular(8.0)),
+                  ),
+                  margin: const EdgeInsets.all(4.0),
+                  child: Image.asset('images/4.jpg'),
+                ),
+              ),
+            ],
+          ),
+        ]
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('TextField 示例'),
+        title: Text('Container容器布局示例'),
       ),
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(20.0),
-          child: TextField(
-            controller: controller,
-            autofocus: true,
-            autocorrect: true,
-            maxLength: 30,
-            textAlign: TextAlign.center,
-            onChanged: (text) {
-              print('文本内容改变时回调：$text');
-            },
-            onSubmitted: (text) {
-              print('提交时回调：$text');
-            },
-            enabled: true,
-            decoration: InputDecoration(
-              fillColor: Colors.grey.shade200,
-              filled: true,
-              helperText: '用户名',
-              prefixIcon: Icon(Icons.person),
-              suffixText: '用户名'
-            ),
-          ),
-        ),
-      ),
+      body: container,
     );
   }
 }
